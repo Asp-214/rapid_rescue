@@ -1,0 +1,119 @@
+from django.db import models
+
+class CameraProtocol(models.Model):
+    protocol_id = models.AutoField(primary_key=True)
+    protocol = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.protocol
+
+class Location(models.Model):
+    location_id = models.AutoField(primary_key=True)
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
+    district = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.latitude}, {self.longitude} - {self.description}, {self.district}, {self.state}"
+
+class Severity(models.Model):
+    severity_id = models.AutoField(primary_key=True)
+    severity_level = models.IntegerField()
+    severity_description = models.TextField()
+
+    def __str__(self):
+        return f"{self.severity_level}"
+
+class Recipient(models.Model):
+    recipient_id = models.AutoField(primary_key=True)
+    recipient_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20)
+    whatsapp_number = models.CharField(max_length=20)
+    recipient_address = models.TextField()
+    district = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zipcode = models.CharField(max_length=10)
+    tag = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.recipient_name
+
+class Permission(models.Model):
+    permission_id = models.AutoField(primary_key=True)
+    permission_code = models.CharField(max_length=100)
+    permission_description = models.TextField()
+
+    def __str__(self):
+        return self.permission_code
+
+class Role(models.Model):
+    role_id = models.AutoField(primary_key=True)
+    role_name = models.CharField(max_length=100)
+    role_description = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.role_name
+
+class User(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255)
+    created_on = models.DateTimeField(auto_now_add=True)
+    profile_pic = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+class Accident(models.Model):
+    accident_id = models.AutoField(primary_key=True)
+    accident_date = models.DateField()
+    accident_time = models.TimeField()
+    camera = models.ForeignKey('Camera', on_delete=models.CASCADE)
+    severity = models.ForeignKey(Severity, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    video_clip = models.BinaryField()
+
+    def __str__(self):
+        return f"Accident ID: {self.accident_id}"
+
+class Camera(models.Model):
+    camera_id = models.AutoField(primary_key=True)
+    camera_name = models.CharField(max_length=100, null=True, blank=True)
+    protocol = models.ForeignKey(CameraProtocol, on_delete=models.CASCADE)
+    camera_ip = models.CharField(max_length=100)
+    camera_auth = models.BooleanField(default=False)
+    camera_username = models.CharField(max_length=100, null=True, blank=True)
+    camera_password = models.CharField(max_length=100, null=True, blank=True)
+    camera_stream_path = models.CharField(max_length=255, null=True, blank=True)
+    camera_port_no = models.IntegerField(null=True, blank=True)
+    recipient = models.ForeignKey(Recipient, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
+    added_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.camera_name
+
+class MessageLog(models.Model):
+    message_id = models.AutoField(primary_key=True)
+    accident = models.ForeignKey(Accident, on_delete=models.CASCADE)
+    recipient = models.ForeignKey(Recipient, on_delete=models.CASCADE)
+    message_content = models.TextField()
+    message_status = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"Message ID: {self.message_id}"
+
+class RolesPermission(models.Model):
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    permission = models.ForeignKey(Permission, on_delete=models.CASCADE)
+
+class UsersRoles(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)

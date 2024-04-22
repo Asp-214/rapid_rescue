@@ -1,0 +1,8 @@
+- login module is set for now. but i missing is when trying to authenticate with wring pass, the page wont allow as to dashboard but won't show "Incorrect username or password" Dynamically without refreshing the page and forgot username/password  feature .so we need to add that to complete the login authenticatin module.
+
+- dashboard is 1/3 set but its missing like map pins from database and others
+
+- user is pending
+
+
+-- sign out is completely set for now.

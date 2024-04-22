@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.nav-pane{
+    float: left;
+    width: auto;
+}
+.main-pane{
+    direction: ltr;
+}
+
+
