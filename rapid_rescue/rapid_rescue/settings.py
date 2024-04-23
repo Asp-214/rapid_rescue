@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'rapid_rescue.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rapid_db',
+        'NAME': 'rapid_db_main',
         'USER': 'rapid',
         'PASSWORD': 'rapid@123',
         'HOST': 'localhost',   # or your database host
