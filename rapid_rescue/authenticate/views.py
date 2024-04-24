@@ -14,6 +14,7 @@ def redirection(request):
 def user_login(request):
 
     user = None
+    incorrect = False
     if request.user.is_authenticated:
         return redirect('dashboard')
     
@@ -25,11 +26,12 @@ def user_login(request):
         if user is not None:
             login(request, user)
             return redirect('dashboard')
-        
+        else:
+            incorrect = True
         # else:
         #     return render(request, 'login.html',{'success': False, 'message': 'Incorrect username or password'})
 
-    return render(request,'authenticate/login.html')
+    return render(request,'authenticate/login.html', {'incorrect': incorrect })
 
 
 @login_required(login_url='login')
