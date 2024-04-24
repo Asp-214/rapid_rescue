@@ -3,8 +3,6 @@ from django.db import models
 
 
 # Create your models here.
-
-
 class CameraProtocols(models.Model):
     protocol = models.CharField(primary_key=True, max_length=100)
 
