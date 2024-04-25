@@ -61,3 +61,53 @@ button{
 }
 
 
+/*------------Profile/user-menu-------------*/
+
+/* 
+.user-menu {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc; '/* Default background color /
+  background-image: url('path_to_default_profile_pic.png'); /* Default profile picture /
+  background-size: cover;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  z-index: 1001;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 5px 0; 
+}
+*/
+
+.user-icon{
+  display: block;
+  position: fixed;
+  background-color: aqua;
+  top: 50px;
+  right: 50px;
+  width: 20px;
+}
