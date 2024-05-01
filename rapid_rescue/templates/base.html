@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+
+    {% block links %} 
+        link Imports 
+    {% endblock %}
+
+</head>
+<body>
+    <header>
+        {% block header %}
+        <h1>Header</h1>
+        {% endblock %}
+    </header>
+
+    <nav>
+        {% block nav %}
+        <h1>navigation</h1>
+        {% endblock %}
+    </nav>
+
+    <main>
+        {% block main %}
+        <h1>Main Content</h1>
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        &copy; 2024 My Site
+        {% endblock %}
+    </footer>
+</body>
+
+</body>
+</html>

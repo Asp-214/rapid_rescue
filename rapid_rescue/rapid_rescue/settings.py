@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accidents',
+    'authenticate',
+    'dashboard',
+    'cameras',
+    'users',
+    'recipients',
+    'reports',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +92,7 @@ WSGI_APPLICATION = 'rapid_rescue.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rapid_db',
+        'NAME': 'rapid_db_main',
         'USER': 'rapid',
         'PASSWORD': 'rapid@123',
         'HOST': 'localhost',   # or your database host
@@ -115,6 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
