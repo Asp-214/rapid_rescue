@@ -1,15 +1,9 @@
-
-from django.contrib import admin
-from django.urls import path , include
+from django.urls import path
 from . import views
-# from django.conf import settings
-# from django.conf.urls.static import static
 
 urlpatterns = [
-    path('',views.redirection, name='redirection'),
-    path('login/', views.user_login, name='login'),
+    path('', views.redirector, name='redirector'),
+    path('login/',views.login_page, name='login'),
+    path('login/auth/verify/', views.user_login, name='authverify' ),
     path('logout/' , views.user_logout, name = 'logout')
-
 ]
-
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,40 +1,50 @@
 from django.shortcuts import render, redirect
-
-from django.contrib.auth import authenticate, login,logout 
+from django.http import HttpResponse , JsonResponse
+from django.contrib.auth import authenticate, login, logout 
 from django.views.decorators.cache import never_cache
 from django.contrib.auth.decorators import login_required 
-# Create your views here.
+from users.models import CustomUser
 
 
+# Base Empty Redirection if Logged in
 @login_required(login_url='login')
-def redirection(request):
+def redirector(request):
     return redirect('dashboard')
 
-@never_cache
-def user_login(request):
 
-    user = None
-    incorrect = False
+# For Rendering Login Page
+@never_cache
+def login_page(request):
     if request.user.is_authenticated:
         return redirect('dashboard')
-    
+    else:
+        return render(request, 'login/login.html')
+
+
+# For Authentication with AJAX
+def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        password = request.POST.get('pwd')
-        user = authenticate(request, username=username, password=password)
+        password = request.POST.get('password')
 
-        if user is not None:
-            login(request, user)
-            return redirect('dashboard')
-        else:
-            incorrect = True
-        # else:
-        #     return render(request, 'login.html',{'success': False, 'message': 'Incorrect username or password'})
+        try:
+            CustomUser.objects.get(username=username) # if not exists it throws an exception
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                status = 0
+            else:
+                status = 1
+        except CustomUser.DoesNotExist:
+            status = -1
+            
+        data = { 'status' : status }
+        return JsonResponse( data ,status=200 )
+    else:
+        return HttpResponse(request ,"Error : Access Denied ") 
 
-    return render(request,'authenticate/login.html', {'incorrect': incorrect })
 
-
-@login_required(login_url='login')
+# For Logging out / Clearing Sessions
 def user_logout(request):
     logout(request)
     return redirect('login')

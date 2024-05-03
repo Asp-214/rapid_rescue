@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--==============Icon Preloads================-->
+
+        <link rel="preload" href="{% static 'images/logo.png' %}" as="image">
+
+        <link rel="preload" href="{% static 'images/login/rescue-operation.png' %}" as="image">
+
+        <!--==============Title Icon================-->
+
+        <link rel="icon" href="{% static 'images/logo.png' %}">
+
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="{% static 'css/login/login.css' %}">
+    
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>Login to Rapid Rescue</title>
+    </head>
+    <body>
+        <div class="login">
+            <div class="login__content">
+                <div class = "logo-name flex-display">
+                    <img src="{% static 'images/logo.png' %}" alt="IMG">
+                    <span>Rapid Rescue</span>
+                </div>
+                <div class="login__img">
+                    <img src="{% static 'images/login/rescue-operation.png' %}" alt="">
+                </div>
+                <div class="login__forms">
+                    <form method="post" class="login__registre" id="login-in">
+                        {% csrf_token %}
+                        <h1 class="login__title">Log In</h1>
+    
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+                            <input type="text" placeholder="Username" class="login__input" name="username" id="username" required>
+                        </div>
+                    
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            <input type="password" placeholder="Password" class="login__input" name="password"  id="password" required>
+                        </div>
+                        
+                        <div>
+                            <span class="incorrect-noexist" id="incorrect">Incorrect Password</span>
+                            <span class="incorrect-noexist" id="notexist">The User Doesn't Exist</span>
+                        </div>
+                        
+                        <div>
+                            <a href="#" class="login__forgot">Forgot password?</a>
+                            <button type="submit" id = "sign-in">Log In</button>
+                        </div>
+                        <div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>
+                    </form>
+                </div>
+        <!--===== MAIN JS =====-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{% static 'js/login/login.js' %}"></script>
+    </body>
+</html>
