@@ -6,36 +6,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Site{% endblock %}</title>
 
-    {% block links %} 
-        link Imports 
+    <link rel="icon" type="image/png" href="{% static 'images/logo40.png' %}">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base/base.css' %}">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    {% block imports %} 
     {% endblock %}
 
 </head>
 <body>
+
+    {% block header %}
     <header>
-        {% block header %}
-        <h1>Header</h1>
-        {% endblock %}
+        <div class="logo">
+            <img class="icon" src="{% static 'images/logo.png' %}" alt="IMG">
+            <img class="title" src="{% static 'images/rapid_rescue.svg' %}" alt="">
+        </div>
+        <div class="appname" id="appname">
+            <span>{% block appname %}base{% endblock %}</span>
+        </div>
+        <div class="profile">
+            <img src="{% static 'images/default_user.jpg' %}" alt="">
+        </div>
     </header>
+    {% endblock %}
+    
+    {% block nav %} 
+    <div class="container">
+        <div class= "l-navbar" >
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon" title="Dashboard"><ion-icon name="home-outline"></ion-icon></span>
+                            <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+        
+                    <li>
+                        <a href="#">
+                            <span class="icon" title="Users"><ion-icon name="person-outline"></ion-icon></span>
+                            <span class="title">User Management</span>
+                        </a>
+                    </li>
+        
+                    <li>
+                        <a href="#">
+                            <span class="icon" title="Cameras"><ion-icon name="videocam-outline"></ion-icon></span>
+                            <span class="title">Cameras</span>
+                        </a>
+                    </li>
+        
+                    <li>
+                         <a href="#">
+                             <span class="icon" title="Reports"><ion-icon name="bar-chart-outline"></ion-icon></span>
+                             <span class="title">Reports</span>
+                         </a>
+                     </li>
+        
+                    <li>
+                        <a href="#">
+                            <span class="icon" title="Recipients"><ion-icon name="chatbox-outline"></ion-icon></span>
+                            <span class="title">Recipients</span>
+                        </a>
+                    </li>
+        
+                    <li>
+                        <a href="#">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                            <span class="icon" title="Settings"><ion-icon name="settings-outline"></ion-icon></span>
+                            <span class="title">Settings</span>
+                        </a>
+                    </li>
+        
+                    <li>
+                        <a href="#">
+                            <span class="icon" title="Sign Out"><ion-icon name="log-out-outline"></ion-icon></span>
+                            <span class="title">Sign Out</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    {% endblock %}
 
-    <nav>
-        {% block nav %}
-        <h1>navigation</h1>
-        {% endblock %}
-    </nav>
-
+    {% block main %}
     <main>
-        {% block main %}
         <h1>Main Content</h1>
-        {% endblock %}
     </main>
+    {% endblock %}
 
+    {% block footer %}
     <footer>
-        {% block footer %}
-        &copy; 2024 My Site
-        {% endblock %}
     </footer>
-</body>
-
+    {% endblock %}
 </body>
 </html>

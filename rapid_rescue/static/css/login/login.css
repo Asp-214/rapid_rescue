@@ -3,6 +3,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+
 /*===== VARIABLES CSS =====*/
 :root{
   /*===== Colores =====*/
@@ -51,6 +54,7 @@ img{
   height: auto;
   display: block;
 }
+
 .logo-name{
   position: flex;
   align-items: center;
@@ -62,6 +66,10 @@ img{
   width: 60px;
   margin-right: 15px;
   animation: rotate-logo 1s ;
+}
+
+.login__content .logo-title{
+  font-family: 'Ubuntu' , sans-serif;
 }
 
 @keyframes rotate-logo {

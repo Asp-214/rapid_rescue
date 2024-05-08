@@ -3,17 +3,34 @@
 
 {% block title %} Dashboard {% endblock %}
 
-{% block imports %}
-<link rel="stylesheet" href="{% static 'css/dashboard/dashboard.css' %}"> 
+{% block links %}
+
+    <link rel="icon" type="image/png" href="{% static 'images/logo40.png' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+
 {% endblock %}
 
-{% block appname %} Dashboard {% endblock %}
+{% block header %} {% endblock %}
+
+{% block nav %} 
+    <div>   
+        {% include 'utils/nav/navigation1.html'%}
+    </div>
+    <div>
+    </div>
+{% endblock %}
 
 {% block main %}
-    <main>
+    <div class="main-pane">
         <div id="map" class="map"></div>
-    </main>
-</div>
+    </div>
+
     <!-- Include Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"> </script>
     <script>

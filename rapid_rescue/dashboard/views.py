@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required 
-from django.contrib.auth import logout
 from cameras.models import Locations
 
 # Create your views here.
@@ -18,3 +17,6 @@ def login_redirect(request):
         return redirect('dashboard')
     else:
         return redirect('login')
+    
+def base_test(request):
+    return render(request, 'base.html')
